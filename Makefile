@@ -2,7 +2,6 @@
 
 .PHONY: clean
 
-# List of files to keep
 KEEP_FILES = curtain_final_project.pdsprj curtain_final.c curtain_final.hex curtain_final.mcppi Makefile pic.png README.md
 
 clean:
