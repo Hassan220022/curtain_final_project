@@ -1,9 +1,9 @@
-# Makefile to clean up directory and keep only specific files and remove the Project backups folder
+# Makefile to clean up directory and keep only specific files and .git directory
 
 .PHONY: clean
 
 # List of files to keep
-KEEP_FILES = curtain_final.mcpi curtain_final.mcppi pic.png readme.md *.c *.pdsprj
+KEEP_FILES = curtain_final_project.pdsprj curtain_final.c curtain_final.hex curtain_final.mcppi Makefile pic.png README.md
 
 git:
 	git add .
@@ -12,13 +12,15 @@ git:
 	clear
 
 clean:
-	# Remove all files except the specified ones
-	find . -type f ! -name 'curtain_final.mcpi' \
+	# Remove all files except the specified ones and the .git directory
+	find . -type f ! -name 'curtain_final_project.pdsprj' \
+		! -name 'curtain_final.c' \
+		! -name 'curtain_final.hex' \
 		! -name 'curtain_final.mcppi' \
+		! -name 'Makefile' \
 		! -name 'pic.png' \
-		! -name 'readme.md' \
-		! -name '*.c' \
-		! -name '*.pdsprj' \
+		! -name 'README.md' \
+		! -path './.git/*' \
 		-delete
-	# Remove the "Project backups" folder
-	rm -rf "Project backups"
+	# Remove all directories except the .git directory
+	find . -type d ! -name '.' ! -name '.git' -exec rm -rf {} +
