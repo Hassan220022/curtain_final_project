@@ -1,22 +1,22 @@
-sbit IR_TOP at RB0_bit;    // IR sensor at the top
-sbit IR_BOTTOM at RB1_bit; // IR sensor at the bottom
+sbit IR_TOP at RD0_bit;    // IR sensor at the top
+sbit IR_BOTTOM at RD1_bit; // IR sensor at the bottom
 sbit MOTOR_CONTROL_PIN_1 at RD6_bit;
 sbit MOTOR_CONTROL_PIN_2 at RD7_bit;
 
 // LCD module connections
-sbit LCD_RS at RD0_bit;
-sbit LCD_EN at RD1_bit;
-sbit LCD_D4 at RD2_bit;
-sbit LCD_D5 at RD3_bit;
-sbit LCD_D6 at RD4_bit;
-sbit LCD_D7 at RD5_bit;
+sbit LCD_RS at RB4_bit;
+sbit LCD_EN at RB5_bit;
+sbit LCD_D4 at RB0_bit;
+sbit LCD_D5 at RB1_bit;
+sbit LCD_D6 at RB2_bit;
+sbit LCD_D7 at RB3_bit;
 
-sbit LCD_RS_Direction at TRISD0_bit;
-sbit LCD_EN_Direction at TRISD1_bit;
-sbit LCD_D4_Direction at TRISD2_bit;
-sbit LCD_D5_Direction at TRISD3_bit;
-sbit LCD_D6_Direction at TRISD4_bit;
-sbit LCD_D7_Direction at TRISD5_bit;
+sbit LCD_RS_Direction at TRISB4_bit;
+sbit LCD_EN_Direction at TRISB5_bit;
+sbit LCD_D4_Direction at TRISB0_bit;
+sbit LCD_D5_Direction at TRISB1_bit;
+sbit LCD_D6_Direction at TRISB2_bit;
+sbit LCD_D7_Direction at TRISB3_bit;
 
 char value[7];
 
@@ -44,15 +44,17 @@ int read_ldr()
 
 void stopMotor()
 {
+//     while(!IR_TOP || !IR_BOTTOM){
     MOTOR_CONTROL_PIN_1 = 0;
     MOTOR_CONTROL_PIN_2 = 0;
+//    } s
 }
 
 void openCurtain()
 {
     MOTOR_CONTROL_PIN_1 = 1;
     MOTOR_CONTROL_PIN_2 = 0;
-    while (!IR_TOP)
+    while (!IR_TOP || IR_BOTTOM)
         ; // Wait for top sensor trigger
     stopMotor();
 }
@@ -61,15 +63,15 @@ void closeCurtain()
 {
     MOTOR_CONTROL_PIN_1 = 0;
     MOTOR_CONTROL_PIN_2 = 1;
-    while (!IR_BOTTOM)
+    while (IR_TOP || !IR_BOTTOM)
         ; // Wait for bottom sensor trigger
     stopMotor();
 }
 
 void setup()
 {
-    TRISB0_bit = 1; // IR Sensor Top as input
-    TRISB1_bit = 1; // IR Sensor Bottom as input
+    TRISD0_bit = 1; // IR Sensor Top as input
+    TRISD1_bit = 1; // IR Sensor Bottom as input
     TRISD6_bit = 0; // Motor control pin 1 as output
     TRISD7_bit = 0; // Motor control pin 2 as output
 
@@ -90,7 +92,7 @@ void main()
 
     Lcd_Out(1, 1, "AUTOMATIC");
     Lcd_Out(2, 1, "LIGHT SYSTEM");
-    delay_ms(250);
+    delay_ms(50);
     Lcd_Cmd(_LCD_CLEAR);
 
     Lcd_Out(1, 1, "LIGHT SENSOR"); // Write text in first row
