@@ -6,7 +6,7 @@ This project uses a PIC16F877A microcontroller to control a curtain system based
 ## Components
 
 - PIC16F877A Microcontroller
-- L298 Motor Driver
+- L293D Motor Driver
 - IR Sensors (2x)
 - LDR Sensor
 - Motor
@@ -26,10 +26,10 @@ Refer to the provided circuit diagram for wiring instructions.
 
 ## Setup
 
-1. Connect the IR sensors to RB0 and RB1.
+1. Connect the IR sensors to RD0 and RD1.
 2. Connect the motor control pins to RD6 and RD7.
 3. Connect the LDR sensor to AN0 (RA0).
-4. Connect the LCD to PORTD (RD0 - RD5).
+4. Connect the LCD to PORTD (RB0 - RB5).
 5. Ensure the PIC16F877A is properly powered and connected.
 
 ## Functionality
