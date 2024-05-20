@@ -19,6 +19,7 @@ clean:
 		-delete
 	# Remove all directories except the .git directory and directories containing specified files
 	find . -type d ! -name '.' ! -name '.git' -exec bash -c 'shopt -s extglob; [[ ! -e "$0"/!(.git|bor3i.png|curtain_final_project.pdsprj|curtain_final.c|curtain_final.hex|curtain_final.mcppi|Makefile|pic.png|README.md) ]] && rm -rf "$0"' {} \;
+	rm -rf Project\ Backups/
 	clear
 
 git:
