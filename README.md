@@ -1,5 +1,5 @@
 # Automatic Curtain Control System
-![Circuit Diagram](pic.png)
+![Circuit Diagram](bor3i.png)
 
 This project uses a PIC16F877A microcontroller to control a curtain system based on ambient light levels. The system employs two IR sensors to detect curtain positions and an LDR sensor to measure light intensity.
 
