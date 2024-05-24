@@ -31,14 +31,6 @@ int read_ldr()
     lcd_out(2, 9, Ltrim(value));
     Lcd_Chr_Cp('%');
     Lcd_Chr_Cp(' ');
-    if (light >= 65) // SWITCH off the light when light is 65 percent
-    {
-        PORTB.F1 = 0;
-    }
-    else
-    {
-        PORTB.F1 = 1;
-    }
     return light;
 }
 
