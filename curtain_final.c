@@ -36,10 +36,8 @@ int read_ldr()
 
 void stopMotor()
 {
-//     while(!IR_TOP || !IR_BOTTOM){
     MOTOR_CONTROL_PIN_1 = 0;
     MOTOR_CONTROL_PIN_2 = 0;
-//    } s
 }
 
 void openCurtain()
