@@ -74,8 +74,6 @@ void main()
 {
     int light;
     setup();
-    // TRISB = 0X00;
-    // PORTB = 0X00;
     ADC_Init();
 
     Lcd_Init();               // Initialize LCD
