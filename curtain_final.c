@@ -28,26 +28,18 @@ int read_ldr()
     light = 100 - adc_value / 10.24;
     inttostr(light, value);
     lcd_out(2, 1, "Light = ");
-    lcd_out(2, 9, Ltrim(value));
+    lcd_out(2, 9, ltrim(value));
     Lcd_Chr_Cp('%');
     Lcd_Chr_Cp(' ');
-    if (light >= 65) // SWITCH off the light when light is 65 percent
-    {
-        PORTB.F1 = 0;
-    }
-    else
-    {
-        PORTB.F1 = 1;
-    }
     return light;
 }
 
 void stopMotor()
 {
-//     while(!IR_TOP || !IR_BOTTOM){
+    //     while(!IR_TOP || !IR_BOTTOM){
     MOTOR_CONTROL_PIN_1 = 0;
     MOTOR_CONTROL_PIN_2 = 0;
-//    } s
+    //    } s
 }
 
 void openCurtain()
