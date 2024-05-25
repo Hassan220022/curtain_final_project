@@ -36,10 +36,10 @@ int read_ldr()
 
 void stopMotor()
 {
-    //     while(!IR_TOP || !IR_BOTTOM){
+//     while(!IR_TOP || !IR_BOTTOM){
     MOTOR_CONTROL_PIN_1 = 0;
     MOTOR_CONTROL_PIN_2 = 0;
-    //    } s
+//    } s
 }
 
 void openCurtain()
@@ -74,8 +74,6 @@ void main()
 {
     int light;
     setup();
-    // TRISB = 0X00;
-    // PORTB = 0X00;
     ADC_Init();
 
     Lcd_Init();               // Initialize LCD
